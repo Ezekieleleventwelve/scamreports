@@ -67,7 +67,7 @@ export default function WarnlistEntryPanel({
   registerLabels,
 }: WarnlistEntryPanelProps) {
   const { t } = useLocale();
-  const moneyLocale = locale === "de" ? "de-CH" : "en-GB";
+  const moneyLocale = "en-GB";
   const address = formatAddress(entry);
   const websites = (entry.websites ?? "")
     .split(/[,;]+/)

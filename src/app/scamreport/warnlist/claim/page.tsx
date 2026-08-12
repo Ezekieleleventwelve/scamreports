@@ -24,7 +24,7 @@ export default async function WarnlistClaimHubPage({
   const params = await searchParams;
   const locale = await getLocale();
   const dict = await getDictionary(locale);
-  const moneyLocale = locale === "de" ? "de-CH" : "en-GB";
+  const moneyLocale = "en-GB";
   const query = parseWarnlistQuery({ q: params.q, page: "1" });
   const q = query.q?.trim() ?? "";
   const results = q

@@ -52,7 +52,7 @@ export function generateSiteMetadata(
 ): Metadata {
   const title = pageTitle
     ? `${pageTitle} | ${SITE_NAME}`
-    : `${SITE_NAME} — Warnlist international`;
+    : `${SITE_NAME} — Warnlist`;
   const description =
     pageDescription ||
     "Public warning register of persons and companies — Interpol-style profiles for banks, compliance, and the public. Searchable and indexed worldwide.";
@@ -61,7 +61,7 @@ export function generateSiteMetadata(
     title,
     description,
     keywords: [
-      "warnlist international",
+      "warnlist",
       "warning register",
       "fraud warning",
       "person profile",

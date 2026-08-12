@@ -104,7 +104,7 @@ export default function WarnlistClaimPage() {
     }
   };
 
-  const moneyLocale = locale === "de" ? "de-CH" : "en-GB";
+  const moneyLocale = "en-GB";
   const shell = WARNLIST_PAGE;
 
   if (loading) {

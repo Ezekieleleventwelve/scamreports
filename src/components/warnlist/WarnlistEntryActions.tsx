@@ -13,7 +13,7 @@ interface WarnlistEntryActionsProps {
 
 export default function WarnlistEntryActions({ entry, locale }: WarnlistEntryActionsProps) {
   const { t } = useLocale();
-  const moneyLocale = locale === "de" ? "de-CH" : "en-GB";
+  const moneyLocale = "en-GB";
   const reportSlug = getWarnlistReportSlug(entry);
   const showAmount = hasAmountOwed(entry.amountOwed);
   const showReport = Boolean(reportSlug);

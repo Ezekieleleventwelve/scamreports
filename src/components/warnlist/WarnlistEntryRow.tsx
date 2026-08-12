@@ -26,7 +26,7 @@ export default function WarnlistEntryRow({
   const [open, setOpen] = useState(defaultOpen);
   const panelId = `warnlist-panel-${entry.slug}`;
   const origin = getWarnlistOriginDisplay(entry);
-  const moneyLocale = locale === "de" ? "de-CH" : "en-GB";
+  const moneyLocale = "en-GB";
 
   const amountLabel =
     hasAmountOwed(entry.amountOwed) &&

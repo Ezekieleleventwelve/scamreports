@@ -1,7 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import { createContext, useContext, useCallback, ReactNode } from "react";
 import type { Locale, Dictionary } from "./types";
 import { DEFAULT_LOCALE } from "./types";
 import enDict from "./dictionaries/en";
@@ -17,31 +16,17 @@ const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 export function LocaleProvider({
   children,
-  initialLocale,
   initialDict,
 }: {
   children: ReactNode;
-  initialLocale: Locale;
-  initialDict: Dictionary;
+  initialLocale?: Locale;
+  initialDict?: Dictionary;
 }) {
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
-  const [dict, setDict] = useState<Dictionary>(initialDict);
-  const router = useRouter();
+  const dict = initialDict ?? enDict;
 
-  const setLocale = useCallback(
-    async (newLocale: Locale) => {
-      document.cookie = `locale=${newLocale};path=/;max-age=31536000`;
-      setLocaleState(newLocale);
-      // Load new dictionary
-      try {
-        const en = (await import("./dictionaries/en")).default;
-        const mod = await import(`./dictionaries/${newLocale}`);
-        setDict({ ...en, ...mod.default });
-      } catch {}
-      router.refresh();
-    },
-    [router]
-  );
+  const setLocale = useCallback((_locale: Locale) => {
+    // English-only site — locale switching disabled
+  }, []);
 
   const t = useCallback(
     (key: string, replacements?: Record<string, string | number>) => {
@@ -57,7 +42,9 @@ export function LocaleProvider({
   );
 
   return (
-    <LocaleContext.Provider value={{ locale, dict, setLocale, t }}>
+    <LocaleContext.Provider
+      value={{ locale: DEFAULT_LOCALE, dict, setLocale, t }}
+    >
       {children}
     </LocaleContext.Provider>
   );
@@ -65,6 +52,13 @@ export function LocaleProvider({
 
 export function useLocale() {
   const ctx = useContext(LocaleContext);
-  if (!ctx) return { locale: DEFAULT_LOCALE, setLocale: () => {}, t: (k: string) => k, dict: {} as Dictionary };
+  if (!ctx) {
+    return {
+      locale: DEFAULT_LOCALE,
+      setLocale: () => {},
+      t: (k: string) => k,
+      dict: enDict,
+    };
+  }
   return ctx;
 }

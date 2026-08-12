@@ -13,7 +13,7 @@ const dict: Dictionary = {
   "nav.fraud": "Fraud",
   "nav.corruption": "Corruption",
   "nav.phishing": "Phishing",
-  "nav.warnlist": "Warnlist international",
+  "nav.warnlist": "Warnlist",
   "nav.report": "Report",
   "nav.claim": "Claim",
   "nav.reportAria": "Report a person or company to the warning list",
@@ -172,7 +172,7 @@ const dict: Dictionary = {
   "submit.paymentReference": "Payment reference",
 
   // Warning list
-  "warnlist.title": "Warnlist international",
+  "warnlist.title": "Warnlist",
   "warnlist.subtitle": "For banks, insurance, and compliance",
   "warnlist.intro":
     "Persons and companies documented by scamreports investigations, regulatory warnings, and consortium-reviewed reports. Entries link to full articles where available.",
@@ -201,7 +201,7 @@ const dict: Dictionary = {
   "warnlist.crawlIndexTitle": "Full index — all persons and companies",
   "warnlist.viewProfile": "View full profile",
   "warnlist.fullReport": "Full report",
-  "warnlist.backToList": "Back to Warnlist international",
+  "warnlist.backToList": "Back to Warnlist",
   "warnlist.listed": "Listed",
   "warnlist.websites": "Websites / domains",
   "warnlist.source": "Source",

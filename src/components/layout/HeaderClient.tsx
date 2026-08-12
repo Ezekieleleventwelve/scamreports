@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 import SearchBar from "@/components/layout/SearchBar";
 import { WARNLIST_BASE } from "@/lib/warnlist-paths";
 
@@ -47,7 +46,13 @@ export function HeaderClaimLink({ label }: { label: string }) {
   );
 }
 
-export function HeaderReportLink({ label, ariaLabel }: { label: string; ariaLabel: string }) {
+export function HeaderReportLink({
+  label,
+  ariaLabel,
+}: {
+  label: string;
+  ariaLabel: string;
+}) {
   const pathname = usePathname();
   const active = pathname === "/submit" || pathname === `${WARNLIST_BASE}/submit`;
 
@@ -78,7 +83,6 @@ export function HeaderActions({
   return (
     <div className="flex items-center gap-1">
       <SearchBar />
-      <LanguageSwitcher />
       <ThemeToggle />
       <HeaderClaimLink label={claimLabel} />
       <HeaderReportLink label={reportLabel} ariaLabel={reportAriaLabel} />

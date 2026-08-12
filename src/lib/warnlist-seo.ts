@@ -35,7 +35,7 @@ export function buildWarnlistEntryKeywords(entry: WarnlistEntry): string[] {
     entry.name,
     entry.slug.replace(/-/g, " "),
     entry.type === "PERSON" ? "person" : "company",
-    "warnlist international",
+    "warnlist",
     "warning list",
     "ZEFIX",
     "Verwaltungsrat",
@@ -78,7 +78,7 @@ export function generateWarnlistEntryMetadata(entry: WarnlistEntry): Metadata {
     keywords,
     alternates: { canonical: url },
     openGraph: {
-      title: `${entry.name} | ${SITE_NAME} Warnlist international`,
+      title: `${entry.name} | ${SITE_NAME} Warnlist`,
       description,
       url,
       siteName: SITE_NAME,
@@ -105,17 +105,17 @@ export function generateWarnlistEntryMetadata(entry: WarnlistEntry): Metadata {
 }
 
 export const WARNLIST_INDEX_DESCRIPTION =
-  "Warnlist international — register for banks and compliance: persons and companies from scamreports investigations, regulatory warnings, and creditor files — with principals, locations, and case references.";
+  "Warnlist — register for banks and compliance: persons and companies from scamreports investigations, regulatory warnings, and creditor files — with principals, locations, and case references.";
 
 export function generateWarnlistIndexMetadata(): Metadata {
   const url = warnlistIndexUrl();
   const description = WARNLIST_INDEX_DESCRIPTION;
 
   return {
-    title: `Warnlist international | ${SITE_NAME}`,
+    title: `Warnlist | ${SITE_NAME}`,
     description,
     keywords: [
-      "warnlist international",
+      "warnlist",
       "warning list",
       "red notice style register",
       "bank compliance",
@@ -132,7 +132,7 @@ export function generateWarnlistIndexMetadata(): Metadata {
     ],
     alternates: { canonical: url },
     openGraph: {
-      title: `Warnlist international | ${SITE_NAME}`,
+      title: `Warnlist | ${SITE_NAME}`,
       description,
       url,
       siteName: SITE_NAME,
@@ -193,7 +193,7 @@ export function generateWarnlistEntryJsonLd(entry: WarnlistEntry) {
 export function generateWarnlistEntryBreadcrumbJsonLd(entry: WarnlistEntry) {
   return generateBreadcrumbJsonLd([
     { name: SITE_NAME, url: SITE_URL },
-    { name: "Warnlist international", url: warnlistIndexUrl() },
+    { name: "Warnlist", url: warnlistIndexUrl() },
     { name: entry.name, url: warnlistEntryUrl(entry.slug) },
   ]);
 }
@@ -202,7 +202,7 @@ export function generateWarnlistIndexJsonLd(entries: WarnlistEntry[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `${SITE_NAME} — Warnlist international`,
+    name: `${SITE_NAME} — Warnlist`,
     description: WARNLIST_INDEX_DESCRIPTION,
     url: warnlistIndexUrl(),
     numberOfItems: entries.length,

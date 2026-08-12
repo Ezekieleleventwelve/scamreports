@@ -64,6 +64,27 @@ function qatargateLinks(self: (typeof QATARGATE_CLUSTER)[number]): string[] {
   return QATARGATE_CLUSTER.filter((s) => s !== self);
 }
 
+/** Cross-linked East Africa gold-trade dossier (SPA / CIS / licences / contacts). */
+const EAST_AFRICA_GOLD_DOSSIER = [
+  "elves-minerals-uganda-ltd",
+  "eric-lubinga",
+  "mohammad-elves",
+  "royal-import-export-sarl",
+  "katsongo-karim-abdul",
+  "edward-henentem",
+  "dominion-okikiolu-lawson",
+  "jamila",
+] as const;
+
+/** Claim settlement total for the East Africa gold-trade dossier. */
+const GOLD_STORY_CLAIM_USD = 60_000;
+
+function dossierLinks(
+  self: (typeof EAST_AFRICA_GOLD_DOSSIER)[number]
+): string[] {
+  return EAST_AFRICA_GOLD_DOSSIER.filter((s) => s !== self);
+}
+
 const CORE_WARNLIST_ENTRIES: WarnlistEntry[] = [
 {
     slug: "immostich-sa",
@@ -2279,65 +2300,6 @@ const CORE_WARNLIST_ENTRIES: WarnlistEntry[] = [
     ],
   },
   {
-    slug: "hunziker-stadtpolizei-uster",
-    type: "PERSON",
-    name: "Hunziker (Stadtpolizei Uster)",
-    aliases: "Polizist Hunziker, Herr Hunziker, Stadtpolizei Uster Hunziker",
-    country: "Switzerland",
-    location: "Uster, ZH",
-    summary:
-      "Police officer associated with Stadtpolizei Uster on complainant file. Allegations on file: abuse of office (Amtsmissbrauch) and deception (Täuschung) — including public camera appearances promoting narcotics enforcement / prohibition messaging while private conversations on file allegedly contradict that stance. Cross-linked to Stadtpolizei Uster communications dossier. Open complainant matters; not a criminal conviction.",
-    listedAt: "2026-07-30",
-    relatedSlugs: ["stadtpolizei-uster"],
-    cases: [
-      {
-        id: "hz-amtsmissbrauch-taeuschung",
-        title: "Alleged Amtsmissbrauch and Täuschung — complainant file",
-        status: "open",
-        year: 2026,
-        jurisdiction: "Uster, Zürich, Switzerland",
-      },
-      {
-        id: "hz-camera-vs-private",
-        title: "Alleged contradiction between public camera stance and private conversations (on file)",
-        status: "open",
-        year: 2026,
-        jurisdiction: "Uster, Switzerland",
-      },
-    ],
-  },
-  {
-    slug: "stadtpolizei-uster",
-    type: "COMPANY",
-    name: "Stadtpolizei Uster",
-    aliases: "Stadtpolizei Schweiz Uster, Polizei Uster Facebook",
-    country: "Switzerland",
-    location: "Uster, ZH",
-    websites: "uster.ch, facebook.com (Stadtpolizei Uster)",
-    summary:
-      "Municipal police of Uster (ZH). Complainant file: Facebook communications described as coercive / paternalistic toward residents; typographical errors in official comments noted by complainants. Separately, Stadt Uster / Stadtpolizei channels communicated absolute outdoor fire bans including grilling with wood or charcoal (drought / wildfire risk — e.g. public notices 2022 and July 2026); complainants characterise the communications and enforcement tone as overreaching / “police-state” style. Related officer dossier: Hunziker. Listed for complainant documentation — not a finding that lawful fire-safety measures are unlawful.",
-    listedAt: "2026-07-30",
-    relatedSlugs: ["hunziker-stadtpolizei-uster"],
-    cases: [
-      {
-        id: "spu-facebook-comms",
-        title: "Facebook communications — complainant allegations of coercive / inaccurate messaging",
-        status: "open",
-        year: 2026,
-        jurisdiction: "Uster, Switzerland",
-      },
-      {
-        id: "spu-grill-feuerverbot",
-        title: "Outdoor fire / wood-charcoal grilling bans — public notices (complainant dispute of tone/scope)",
-        description:
-          "Public drought-related Feuerverbote in Uster covered open fire and grilling with wood/charcoal; gas grilling often still allowed. Complainants dispute communications style and scope.",
-        status: "open",
-        year: 2026,
-        jurisdiction: "Uster, Switzerland",
-      },
-    ],
-  },
-  {
     slug: "ursula-von-der-leyen",
     type: "PERSON",
     name: "Ursula von der Leyen",
@@ -2699,6 +2661,201 @@ const CORE_WARNLIST_ENTRIES: WarnlistEntry[] = [
     ],
   },
   {
+    slug: "elves-minerals-uganda-ltd",
+    type: "COMPANY",
+    name: "Elves Minerals Uganda Limited",
+    aliases:
+      "ELVES MINERALS UGANDA LTD, Elves Minerals Uganda, ELVAU2026, MDL202505024, MDL.20250524",
+    principals: "Eric Lubinga (seller / representative on SPA); Mohammad Elves (contact on file)",
+    location: "Lubowa / Kampala; Kiwafu, Kitooro Central, Entebbe Municipality, Wakiso",
+    address: "P.O. Box 181041, Kampala, Central Region (licence); Lubowa, Kampala",
+    country: "Uganda",
+    websites: "",
+    summary:
+      "Ugandan precious-metals dealer (Mineral Dealer’s Licence MDL.20250524 / MDL202505024 on file, Ministry of Energy and Mineral Development). Editorial file: gold-dore / AU bars export paperwork toward Dubai/UAE and USA — Certificate of Origin (UNCCI), EAC Customs & Trade Ownership Certificate, URA/ASYCUDA export declaration (E737, 13 Jan 2026), and draft SPA for 50 kg gold at USD 90,000/kg with 7% advance payment to agent (USDT/bank). Consignee fields on several certificates redacted. High-risk gold-trade counterparty pattern — verify licence status, assay custody, and escrow before any funds.",
+    sourceLabel:
+      "Mineral Dealer’s Licence + Certificate of Origin + EAC ownership certificate + URA declaration + SPA draft (editorial file)",
+    listedAt: "2026-07-21",
+    amountOwed: GOLD_STORY_CLAIM_USD,
+    amountOwedCurrency: "USD",
+    relatedSlugs: dossierLinks("elves-minerals-uganda-ltd"),
+    cases: [
+      {
+        id: "emu-mdl-2025",
+        title: "Mineral Dealer’s Licence MDL.20250524 — precious metals (on file)",
+        status: "regulatory",
+        jurisdiction: "Uganda",
+        year: 2025,
+      },
+      {
+        id: "emu-coo-uncci-2026",
+        title: "Certificate of Origin — AU dore bars via Entebbe Airport (UNCCI stamp, on file)",
+        status: "open",
+        jurisdiction: "Uganda / UAE",
+        year: 2026,
+      },
+      {
+        id: "emu-ura-e737",
+        title: "URA/ASYCUDA export declaration E737 — gold bars to UAE (on file)",
+        status: "open",
+        jurisdiction: "Uganda / UAE",
+        year: 2026,
+      },
+      {
+        id: "emu-spa-50kg-advance",
+        title: "SPA draft — 50 kg gold, 7% advance / USDT rails (high-risk pattern, on file)",
+        status: "open",
+        jurisdiction: "Uganda / USA",
+        year: 2026,
+      },
+    ],
+  },
+  {
+    slug: "eric-lubinga",
+    type: "PERSON",
+    name: "Eric Lubinga",
+    imageUrl: "/uploads/eric-lubinga/passport.png",
+    aliases:
+      "MR. LUBINGA ERIC, Lubinga Eric, Elves Minerals Uganda Limited, passport A00115435, CM8806810686AC",
+    location: "Kampala / Mulago (place of birth on passport); Uganda",
+    country: "Uganda",
+    summary:
+      "Named seller on draft Gold Bars Purchase and Sales Agreement (19 March 2026) for Elves Minerals Uganda Limited — 50 kg AU, Entebbe → USA, advance-payment procedure. Uganda passport A00115435 (issued 18 Jul 2019, expires 17 Jul 2029) on editorial file. Linked company files: mineral dealer licence, certificates of origin, URA export paperwork. Treat as high-risk gold-trade principal until independent custody/escrow verified.",
+    sourceLabel: "SPA draft (seller signature block) + Uganda passport copy (editorial file)",
+    listedAt: "2026-07-21",
+    amountOwed: GOLD_STORY_CLAIM_USD,
+    amountOwedCurrency: "USD",
+    relatedSlugs: dossierLinks("eric-lubinga"),
+    cases: [
+      {
+        id: "el-spa-seller-2026",
+        title: "SPA seller — Elves Minerals Uganda Limited / 50 kg gold draft (on file)",
+        status: "open",
+        jurisdiction: "Uganda / USA",
+        year: 2026,
+      },
+      {
+        id: "el-passport-file",
+        title: "Identity document on file — Uganda passport A00115435",
+        status: "open",
+        jurisdiction: "Uganda",
+        year: 2019,
+      },
+    ],
+  },
+  {
+    slug: "mohammad-elves",
+    type: "PERSON",
+    name: "Mohammad Elves",
+    imageUrl: "/uploads/mohammad-elves/whatsapp.png",
+    aliases: "Mohammad Elves, Elves Minerals, +256 784 489948",
+    location: "Uganda (WhatsApp +256)",
+    country: "Uganda",
+    summary:
+      "WhatsApp contact on editorial file (+256 784 489948) using the name Mohammad Elves — naming overlap with Elves Minerals Uganda Limited gold-export file. No separate corporate role confirmed on licence face; treat as related outreach contact pending verification.",
+    sourceLabel: "WhatsApp contact card (editorial file)",
+    listedAt: "2026-07-21",
+    amountOwed: GOLD_STORY_CLAIM_USD,
+    amountOwedCurrency: "USD",
+    relatedSlugs: dossierLinks("mohammad-elves"),
+    cases: [
+      {
+        id: "me-whatsapp-elves",
+        title: "WhatsApp identity — Elves naming overlap with Ugandan gold dealer file",
+        status: "open",
+        jurisdiction: "Uganda",
+        year: 2026,
+      },
+    ],
+  },
+  {
+    slug: "royal-import-export-sarl",
+    type: "COMPANY",
+    name: "Royal Import Export SARL",
+    aliases: "ROYAL IMPORT EXPORT SARL, riesarl.com, RIE Sarl",
+    principals: "Katsongo Karim Abdul (authorized signatory on CIS, on file)",
+    location: "Kinshasa (Gombe); Kisangani bank address on file",
+    address: "1148 Av. Province C/Gombe, Kinshasa, D.R. Congo",
+    country: "Democratic Republic of the Congo",
+    websites: "riesarl.com",
+    summary:
+      "DRC corporate information sheet (CIS) on file: incorporated 8 June 2023, Kinshasa; Rawbank USD account; website riesarl.com / invest@riesarl.com; mobile +243 897 179 981. Signatory on CIS: Katsongo Karim Abdul. Appears in same editorial gold/trade dossier cluster as Ugandan Elves Minerals materials — high-risk counterparty diligence required before any payment.",
+    sourceLabel: "Corporate Information Sheet (CIS) — Royal Import Export SARL (editorial file)",
+    sourceUrl: "https://www.riesarl.com/",
+    listedAt: "2026-07-21",
+    amountOwed: GOLD_STORY_CLAIM_USD,
+    amountOwedCurrency: "USD",
+    relatedSlugs: dossierLinks("royal-import-export-sarl"),
+    cases: [
+      {
+        id: "ries-cis-2025",
+        title: "Corporate Information Sheet — Kinshasa / Rawbank USD (on file)",
+        status: "open",
+        jurisdiction: "DR Congo",
+        year: 2025,
+      },
+    ],
+  },
+  {
+    slug: "katsongo-karim-abdul",
+    type: "PERSON",
+    name: "Katsongo Karim Abdul",
+    imageUrl: "/uploads/abdul-kareem/whatsapp.png",
+    aliases:
+      "Abdul Kareem, Karim Abdul, Katsongo Karim Abdul, Royal Import Export SARL, +243 970 801 559, +243 897 179 981",
+    location: "Kinshasa, Democratic Republic of the Congo",
+    country: "Democratic Republic of the Congo",
+    summary:
+      "Authorized signatory on Royal Import Export SARL Corporate Information Sheet (sworn statement on file, June 2025). WhatsApp contact on file as “Abdul Kareem” (+243 970 801 559) with mining/construction imagery. Treat as DRC trade principal linked to RIE Sarl pending independent verification.",
+    sourceLabel: "CIS signatory block + WhatsApp contact card (editorial file)",
+    listedAt: "2026-07-21",
+    amountOwed: GOLD_STORY_CLAIM_USD,
+    amountOwedCurrency: "USD",
+    relatedSlugs: dossierLinks("katsongo-karim-abdul"),
+    cases: [
+      {
+        id: "kka-ries-signatory",
+        title: "CIS authorized signatory — Royal Import Export SARL (on file)",
+        status: "open",
+        jurisdiction: "DR Congo",
+        year: 2025,
+      },
+      {
+        id: "kka-whatsapp",
+        title: "WhatsApp — Abdul Kareem / +243 970 801 559 (on file)",
+        status: "open",
+        jurisdiction: "DR Congo",
+        year: 2026,
+      },
+    ],
+  },
+  {
+    slug: "edward-henentem",
+    type: "PERSON",
+    name: "Edward Henentem",
+    imageUrl: "/uploads/edward-goodness/document.png",
+    aliases:
+      "Edward Goodness, HENENTEM EDWARD, passport B03248266, NIN 78556806675, previous passport A04508735",
+    location: "Calabar (place of birth); FCT Abuja (passport issue)",
+    country: "Nigeria",
+    summary:
+      "Nigerian passport on editorial file (B03248266, issued 15 Mar 2024, expires 14 Mar 2029, FCT Abuja). Document supplied under filename “Edward Goodness”. Listed for identity / counterparty diligence in the same gold-trade document set; no separate corporate role extracted from the passport image alone.",
+    sourceLabel: "Nigeria passport scan (editorial file)",
+    listedAt: "2026-07-21",
+    amountOwed: GOLD_STORY_CLAIM_USD,
+    amountOwedCurrency: "USD",
+    relatedSlugs: dossierLinks("edward-henentem"),
+    cases: [
+      {
+        id: "eh-passport-file",
+        title: "Identity document on file — Nigeria passport B03248266",
+        status: "open",
+        jurisdiction: "Nigeria",
+        year: 2024,
+      },
+    ],
+  },
+  {
     slug: "dominion-okikiolu-lawson",
     type: "PERSON",
     name: "Dominion Okikiolu Mobolaji Lawson",
@@ -2706,16 +2863,16 @@ const CORE_WARNLIST_ENTRIES: WarnlistEntry[] = [
     country: "Nigeria",
     location: "Nigeria (Lagos / FCT Abuja associations on file)",
     summary:
-      "Named in editorial complainant files as a consultant and contact / introduction intermediary in cross-border gold-trade outreach. Treat introductions, escrow pitches and counterpart referrals as high-risk until independent mandate, escrow and identity checks are verified. No identity document is published on this profile.",
-    sourceLabel: "Editorial complainant file — consultant / contact role",
+      "Named in editorial complainant files as a consultant and contact / introduction intermediary in the East Africa gold-trade dossier. Treat introductions, escrow pitches and counterpart referrals as high-risk until independent mandate, escrow and identity checks are verified. No identity document is published on this profile.",
+    sourceLabel: "Editorial complainant file — consultant / contact role in gold dossier",
     listedAt: "2026-07-21",
-    amountOwed: 60_000,
+    amountOwed: GOLD_STORY_CLAIM_USD,
     amountOwedCurrency: "USD",
-    relatedSlugs: ["hadja"],
+    relatedSlugs: dossierLinks("dominion-okikiolu-lawson"),
     cases: [
       {
         id: "dol-consultant-contacts",
-        title: "Consultant / contact introduction role — gold-trade outreach (on file)",
+        title: "Consultant / contact introduction role — East Africa gold dossier (on file)",
         status: "open",
         jurisdiction: "International",
         year: 2026,
@@ -2723,26 +2880,128 @@ const CORE_WARNLIST_ENTRIES: WarnlistEntry[] = [
     ],
   },
   {
-    slug: "hadja",
+    slug: "jamila",
     type: "PERSON",
-    name: "Hadja",
-    aliases: "Jamilah, Jamila, Hadja / Jamilah, Mum's password (file label)",
+    name: "Jamila",
+    aliases: "Jamilah, Hadja, Mum's password, Mum password, Mum (file label)",
     country: "Uganda",
     location: "Uganda (associations on file)",
     summary:
-      "Named in editorial complainant files as Hadja (also referred to as Jamilah / Jamila) in cross-border gold-trade outreach linked to Dom Lawson and related East Africa counterparties. Previously filed under a credential document labeled “Mum’s password” (content not recovered). Treat related outreach, KYC links and volume/sourcing claims as high-risk until independent mandate and escrow are verified. No identity document is published on this profile.",
-    sourceLabel: "Editorial complainant file — Hadja / Jamilah",
+      "Person identified as Jamila (also referred to as Jamilah / Hadja) in cross-border gold-trade outreach linked to Dom Lawson and related East Africa counterparties. Previously filed under a credential document labeled “Mum’s password” (content not recovered). Treat related outreach, KYC links and volume/sourcing claims as high-risk until independent mandate and escrow are verified. No identity document is published on this profile.",
+    sourceLabel: "Editorial complainant file — Jamila (Mum’s password file label)",
     listedAt: "2026-07-21",
-    amountOwed: 60_000,
+    amountOwed: GOLD_STORY_CLAIM_USD,
     amountOwedCurrency: "USD",
-    relatedSlugs: ["dominion-okikiolu-lawson"],
+    relatedSlugs: dossierLinks("jamila"),
     cases: [
       {
-        id: "hadja-gold-outreach",
+        id: "jamila-gold-outreach",
         title: "Named intermediary / contact — gold-trade outreach cluster (on file)",
         status: "open",
         jurisdiction: "Uganda / International",
         year: 2026,
+      },
+      {
+        id: "jamila-mum-password-file",
+        title: "Jamila — password / credential file label in gold dossier (content not recovered)",
+        status: "open",
+        jurisdiction: "International",
+        year: 2026,
+      },
+    ],
+  },
+  {
+    slug: "alain-giger",
+    type: "PERSON",
+    name: "Alain Giger",
+    aliases:
+      "giger_alain, Medtechswiss, Apotest, Creation D’Alain, Giger & Klingler AG, linkedin.com/in/alain-giger-b2627b1ba",
+    principals: "Medtechswiss AG / Apotest; Giger & Klingler AG (Wilen bei Wollerau, SZ); Creation D’Alain",
+    country: "Switzerland",
+    location: "Canton Schwyz (Wilen bei Wollerau associations on file)",
+    websites:
+      "instagram.com/giger_alain, linkedin.com/in/alain-giger-b2627b1ba, medtechswiss.com, creationdalain.ch",
+    summary:
+      "Schwyz-based businessman (Instagram giger_alain; LinkedIn alain-giger-b2627b1ba). Public press (Zolliker Zumiker Bote, Jan 2022): co-founder of Medtechswiss AG / Apotest — large Swiss Corona test-centre operator; brand link to Giger & Klingler AG (Liechtenstein entity deleted Jul 2020; Swiss Giger & Klingler AG at Wilen bei Wollerau); bankruptcy proceedings against Medtechswiss opened Oct 2021 then withdrawn Dec 2021. Complainant / editorial file further alleges: major business fraud patterns and total business incompetence; Corona test-centre operations with vaccine-certificate forgeries; masks sold at grossly inflated prices; equity / shareholdings in Klingler–Giger structures driven into the ground; cocaine dependence and severe confusion impairing judgment. Financing / banking support attributed on file to Zürcher Kantonalbank (ZKB) — treat as high-risk counterparty diligence flag, not a regulator finding against the bank. Anyone doing business with Giger or related entities should expect a total loss until independent escrow, licence status and audited accounts are verified.",
+    sourceLabel:
+      "Zolliker Zumiker Bote (13 Jan 2022) + Instagram / LinkedIn + complainant / editorial file",
+    sourceUrl: "https://zolliker-zumiker.ch/2022/01/13/das-bombastische-geschaeft-mit-corona-tests/",
+    listedAt: "2026-08-12",
+    relatedSlugs: ["medtechswiss-ag"],
+    cases: [
+      {
+        id: "ag-corona-testcenters-press",
+        title:
+          "Medtechswiss / Apotest — bombastic Corona test-centre business (public press, 2022)",
+        description:
+          "Zolliker Zumiker Bote: nationwide test sites, Bund reimbursement model, Giger & Klingler brand trail, temporary bankruptcy proceedings.",
+        status: "open",
+        year: 2022,
+        jurisdiction: "Switzerland (ZH / SZ)",
+      },
+      {
+        id: "ag-vaccine-forgery-masks",
+        title:
+          "Complainant file — alleged vaccine-certificate forgeries and overpriced masks",
+        status: "open",
+        year: 2026,
+        jurisdiction: "Switzerland",
+      },
+      {
+        id: "ag-klingler-giger-equity",
+        title:
+          "Complainant file — Klingler / Giger shareholdings allegedly driven into the ground",
+        status: "open",
+        year: 2026,
+        jurisdiction: "Switzerland / Liechtenstein",
+      },
+      {
+        id: "ag-zkb-support",
+        title:
+          "Complainant file — alleged banking support via Zürcher Kantonalbank (diligence flag)",
+        status: "open",
+        year: 2026,
+        jurisdiction: "Switzerland",
+      },
+      {
+        id: "ag-total-loss-warning",
+        title:
+          "Business-counterparty warning — expect total loss until escrow / licences verified",
+        status: "open",
+        year: 2026,
+        jurisdiction: "Switzerland",
+      },
+    ],
+  },
+  {
+    slug: "medtechswiss-ag",
+    type: "COMPANY",
+    name: "Medtechswiss AG",
+    aliases: "Apotest, Medtechswiss, medtechswiss.com, brand of Giger & Klingler AG (on file)",
+    principals: "Alain Giger; Edison Shabaj (co-founder per press)",
+    country: "Switzerland",
+    location: "Wilen bei Wollerau, Canton Schwyz (register address associations on file)",
+    websites: "medtechswiss.com",
+    summary:
+      "Swiss Corona test-centre operator also trading as Apotest. Public press (Zolliker Zumiker Bote, Jan 2022): founded Aug 2020 by Alain Giger and Edison Shabaj; claimed large nationwide footprint and Bund reimbursement; AGB previously described Medtechswiss as a brand of Giger & Klingler AG (Liechtenstein company deleted Jul 2020; Swiss Giger & Klingler AG in Wilen bei Wollerau). Bankruptcy proceedings opened Oct 2021, withdrawn Dec 2021 per press. Linked principal: Alain Giger — treat as high-risk pandemic-era counterparty; verify licences, medical supervision and solvency before any engagement.",
+    sourceLabel: "Zolliker Zumiker Bote (13 Jan 2022) + editorial file",
+    sourceUrl: "https://zolliker-zumiker.ch/2022/01/13/das-bombastische-geschaeft-mit-corona-tests/",
+    listedAt: "2026-08-12",
+    relatedSlugs: ["alain-giger"],
+    cases: [
+      {
+        id: "mts-testcenters-2022",
+        title: "Nationwide Corona test centres / Apotest — public reporting (2022)",
+        status: "open",
+        year: 2022,
+        jurisdiction: "Switzerland",
+      },
+      {
+        id: "mts-bankruptcy-2021",
+        title: "Bankruptcy proceedings opened then withdrawn (press, 2021)",
+        status: "open",
+        year: 2021,
+        jurisdiction: "Switzerland",
       },
     ],
   },

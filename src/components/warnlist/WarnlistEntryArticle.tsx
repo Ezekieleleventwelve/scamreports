@@ -54,7 +54,7 @@ export default function WarnlistEntryArticle({
   registerLabels,
 }: WarnlistEntryArticleProps) {
   const origin = getWarnlistOriginDisplay(entry);
-  const moneyLocale = locale === "de" ? "de-CH" : "en-GB";
+  const moneyLocale = "en-GB";
   const address = formatAddress(entry);
   const websites = (entry.websites ?? "")
     .split(/[,;]+/)

@@ -77,7 +77,7 @@ ${EDITORIAL_ON_FILE_NOTE}
 <p>Private aviation brokerage sits between the passenger and the <strong>AOC holder</strong> (the actual operator). Reputable brokers document: operator name, insurance, tail, crew, cancellation terms, and client-money handling. YOUR SKY’s public pitch emphasises speed and crypto — not segregated client accounts or FINMA/FCA-style disclosures.</p>
 <p>When non-performance stacks across jurisdictions (UK, UAE, Turkey, wider Europe/Asia client base cited in marketing), the industry risk is contagion: suppliers, FBOs, and legitimate brokers inherit suspicion. Sources familiar with charter due diligence describe the YOUR SKY pattern as <strong>“a pure catastrophe”</strong> for sector reputation — strong language, but consistent with multi-file non-delivery plus intimidation claims.</p>
 
-<h2>Warnlist international — linked entries</h2>
+<h2>Warnlist — linked entries</h2>
 <p>scamreports maintains parallel due-diligence entries (static register, searchable):</p>
 <ul>
 <li><a href="/warnlist/yoursky">YOUR SKY (company)</a></li>
