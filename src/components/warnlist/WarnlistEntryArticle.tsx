@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { WarnlistEntry } from "@/data/warnlist";
 import { hasAmountOwed } from "@/lib/warnlist";
@@ -8,6 +7,7 @@ import WarnlistEntryActions from "./WarnlistEntryActions";
 import WarnlistRegisterBlock, { type WarnlistRegisterLabels } from "./WarnlistRegisterBlock";
 import WarnlistEntryVideo from "./WarnlistEntryVideo";
 import WarnlistRelatedLinks from "./WarnlistRelatedLinks";
+import WarnlistPhotoPreview from "./WarnlistPhotoPreview";
 
 const STATUS_LABELS: Record<string, string> = {
   open: "Open",
@@ -79,16 +79,13 @@ export default function WarnlistEntryArticle({
 
       <div className="flex gap-4 mb-4">
         {entry.imageUrl ? (
-          <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-muted shrink-0 ring-1 ring-border">
-            <Image
-              src={entry.imageUrl}
-              alt={entry.name}
-              fill
-              className="object-cover object-top"
-              sizes="80px"
-              priority
-            />
-          </div>
+          <WarnlistPhotoPreview
+            src={entry.imageUrl}
+            alt={entry.name}
+            className="w-20 h-20"
+            sizes="80px"
+            priority
+          />
         ) : null}
         <dl className="flex-1 min-w-0 space-y-2 text-[13px]">
           {entry.type === "COMPANY" && entry.principals && (

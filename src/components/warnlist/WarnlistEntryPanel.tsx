@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { WarnlistEntry } from "@/data/warnlist";
 import { useLocale } from "@/lib/i18n/context";
@@ -8,6 +7,7 @@ import WarnlistEntryActions from "./WarnlistEntryActions";
 import WarnlistRegisterBlock, { type WarnlistRegisterLabels } from "./WarnlistRegisterBlock";
 import WarnlistEntryVideo from "./WarnlistEntryVideo";
 import WarnlistRelatedLinks from "./WarnlistRelatedLinks";
+import WarnlistPhotoPreview from "./WarnlistPhotoPreview";
 
 const STATUS_LABELS: Record<string, string> = {
   open: "Open",
@@ -20,15 +20,12 @@ const STATUS_LABELS: Record<string, string> = {
 function EntryPhoto({ entry }: { entry: WarnlistEntry }) {
   if (entry.imageUrl) {
     return (
-      <div className="relative w-[72px] h-[72px] rounded-xl overflow-hidden bg-muted shrink-0 ring-1 ring-border">
-        <Image
-          src={entry.imageUrl}
-          alt=""
-          fill
-          className="object-cover object-top"
-          sizes="72px"
-        />
-      </div>
+      <WarnlistPhotoPreview
+        src={entry.imageUrl}
+        alt={entry.name}
+        className="w-[72px] h-[72px]"
+        sizes="72px"
+      />
     );
   }
 
