@@ -1,0 +1,251 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  email         String?        @unique
+  emailVerified DateTime?
+  image         String?
+  role          String         @default("USER")
+  banned        Boolean        @default(false)
+  ipAddress     String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  posts         Post[]
+  comments      Comment[]
+  claims        Claim[]
+  claimMessages ClaimMessage[]
+  ipLogs        IpLog[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  posts       Post[]
+}
+
+model Post {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  content         String
+  excerpt         String?
+  featuredImage   String?
+  image1          String?
+  image2          String?
+  image3          String?
+  status          String    @default("DRAFT")
+  categoryId      String?
+  tags            String    @default("")
+  keywords        String    @default("")
+  metaTitle       String?
+  metaDescription String?
+  translations    String    @default("{}")
+  authorId        String
+  viewCount       Int       @default(0)
+  readingTime     Int       @default(0)
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  author          User      @relation(fields: [authorId], references: [id])
+  category        Category? @relation(fields: [categoryId], references: [id])
+  comments        Comment[]
+  claims          Claim[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([categoryId])
+}
+
+model Comment {
+  id         String    @id @default(cuid())
+  content    String
+  authorName String?
+  postId     String
+  userId     String?
+  parentId   String?
+  ipAddress  String?
+  status     String    @default("PENDING")
+  createdAt  DateTime  @default(now())
+  post       Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user       User?     @relation(fields: [userId], references: [id])
+  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies    Comment[] @relation("CommentReplies")
+
+  @@index([postId, status])
+  @@index([ipAddress, createdAt])
+}
+
+model Claim {
+  id                String         @id @default(cuid())
+  postId            String?
+  warnlistEntryId   String?
+  warnlistSlug      String?
+  userId            String?
+  claimantName      String
+  contactEmail      String
+  contactPhone      String
+  postalAddress     String
+  relationship      String
+  reason            String
+  identityConfirmed Boolean        @default(false)
+  ipAddress         String?
+  status            String         @default("PENDING")
+  adminNotes        String?
+  fineAmount        Float?
+  paymentAmount     Float?
+  paymentReference  String?
+  paymentStatus     String?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  post              Post?          @relation(fields: [postId], references: [id])
+  warnlistEntry     WarnlistEntry? @relation(fields: [warnlistEntryId], references: [id])
+  user              User?          @relation(fields: [userId], references: [id])
+  messages          ClaimMessage[]
+
+  @@index([postId])
+  @@index([warnlistEntryId])
+  @@index([ipAddress, createdAt])
+}
+
+model ClaimMessage {
+  id        String   @id @default(cuid())
+  claimId   String
+  senderId  String
+  content   String
+  createdAt DateTime @default(now())
+  claim     Claim    @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  sender    User     @relation(fields: [senderId], references: [id])
+}
+
+model IpLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  ipAddress String
+  action    String
+  metadata  String?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([ipAddress])
+}
+
+/// scamreports public warning register — persons and companies (separate from long-form Post articles).
+model WarnlistEntry {
+  id          String   @id @default(cuid())
+  type        String   // PERSON | COMPANY
+  name        String
+  slug        String   @unique
+  aliases     String   @default("")
+  websites    String   @default("")
+  country     String?
+  location    String?
+  summary     String
+  sourceLabel String?
+  sourceUrl   String?
+  reportSlug         String?
+  amountOwed         Float?
+  amountOwedCurrency String   @default("CHF")
+  listedAt           DateTime @default(now())
+  status             String   @default("ACTIVE") // ACTIVE | REMOVED
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  claims             Claim[]
+
+  @@index([type, status])
+  @@index([status, listedAt])
+}
+
+/// Public tip — pending editorial review before adding to static warnlist.
+model WarnlistSubmission {
+  id                 String   @id @default(cuid())
+  type               String   // PERSON | COMPANY
+  name               String
+  aliases            String   @default("")
+  location           String?
+  country            String?
+  summary            String
+  amountOwed         Float?
+  amountOwedCurrency String   @default("CHF")
+  contactEmail       String
+  submitterName      String?
+  status             String   @default("PENDING") // PENDING | APPROVED | REJECTED
+  /// Opaque HMAC fingerprint only — never a plaintext IP
+  ipAddress          String?
+  createdAt          DateTime @default(now())
+
+  @@index([status, createdAt])
+}
+
+/// Public scam/behavior report — human review + optional manual fee before publish.
+model ReportSubmission {
+  id                String   @id @default(cuid())
+  title             String
+  content           String
+  excerpt           String?
+  subjectName       String?
+  subjectType       String?  // PERSON | COMPANY
+  contactEmail      String
+  submitterName     String?
+  evidenceUrls      String   @default("")
+  status            String   @default("PENDING") // PENDING | REVIEWING | AWAITING_PAYMENT | APPROVED | REJECTED | PUBLISHED
+  adminNotes        String?
+  paymentAmount     Float?
+  paymentReference  String?
+  paymentStatus     String?  // UNPAID | SUBMITTED | VERIFIED
+  publishedPostId   String?
+  /// Opaque HMAC fingerprint only — never a plaintext IP
+  clientKey         String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@index([contactEmail, createdAt])
+}

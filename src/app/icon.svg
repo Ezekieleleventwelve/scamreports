@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1a1a1a"/>
+  <rect x="0" y="0" width="32" height="3" fill="#d32f2f"/>
+  <text x="16" y="23" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-weight="800" font-size="11" fill="#ffffff" letter-spacing="-0.06em">SR</text>
+</svg>

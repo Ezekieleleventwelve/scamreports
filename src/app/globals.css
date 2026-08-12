@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap");
+  font-display: swap;
+}
+
+/* Masthead — Old English blackletter, NYT-inspired */
+.masthead-title {
+  font-family: "UnifrakturMaguntia", "Old English Text MT", "Engravers Old English BT", serif;
+  font-style: normal;
+  letter-spacing: -0.08em;
+  font-weight: 400;
+  text-rendering: geometricPrecision;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-swiss-red: var(--swiss-red);
+  --color-swiss-dark: var(--swiss-dark);
+  --color-swiss-gray: var(--swiss-gray);
+  --color-swiss-light: var(--swiss-light);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --muted: #f7f7f7;
+  --muted-foreground: #6b7280;
+  --border: #e0e0e0;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --primary: #d32f2f;
+  --primary-foreground: #ffffff;
+  --accent: #f5f5f5;
+  --accent-foreground: #b71c1c;
+  --swiss-red: #d32f2f;
+  --swiss-dark: #1a1a1a;
+  --swiss-gray: #4a4a4a;
+  --swiss-light: #f0f0f0;
+}
+
+.dark {
+  --background: #111111;
+  --foreground: #e8e8e8;
+  --muted: #1a1a1a;
+  --muted-foreground: #9ca3af;
+  --border: #2a2a2a;
+  --card: #161616;
+  --card-foreground: #e8e8e8;
+  --primary: #ef5350;
+  --primary-foreground: #ffffff;
+  --accent: #1e1e1e;
+  --accent-foreground: #ef9a9a;
+  --swiss-red: #ef5350;
+  --swiss-dark: #e8e8e8;
+  --swiss-gray: #9ca3af;
+  --swiss-light: #1e1e1e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+  line-height: 1.6;
+}
+
+/* Swiss federal style: strong horizontal rules */
+.swiss-rule {
+  height: 4px;
+  background: var(--primary);
+  border: none;
+  margin: 0;
+}
+
+.swiss-rule-thin {
+  height: 1px;
+  background: var(--border);
+  border: none;
+  margin: 0;
+}
+
+/* Ad container - compliant labeling */
+.ad-container {
+  position: relative;
+}
+
+.ad-label {
+  display: block;
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--muted-foreground);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.ad-slot {
+  background: var(--muted);
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  font-size: 0.65rem;
+  color: var(--muted-foreground);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* Typography overrides */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--primary);
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.prose img {
+  border-radius: 2px;
+}
+
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose h2 {
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.prose h3 {
+  letter-spacing: -0.005em;
+  font-weight: 600;
+}
+
+/* Article cards - clean, no-nonsense */
+.article-card {
+  transition: border-color 0.15s ease;
+}
+
+.article-card:hover {
+  border-color: var(--primary);
+}
+
+/* Official badge style */
+.official-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  padding: 2px 8px;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+textarea,
+select {
+  font-family: "Satoshi", sans-serif;
+  border-radius: 0.75rem !important;
+  border: 1px solid var(--border) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: color-mix(in srgb, var(--foreground) 35%, var(--border)) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--foreground) 8%, transparent) !important;
+}
+
+input:invalid:not(:placeholder-shown):not(:focus),
+textarea:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+
+/* Buttons - sharp, institutional */
+button, a.btn {
+  border-radius: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Selection color */
+::selection {
+  background: var(--primary);
+  color: white;
+}
