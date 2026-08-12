@@ -2859,11 +2859,12 @@ const CORE_WARNLIST_ENTRIES: WarnlistEntry[] = [
     slug: "dominion-okikiolu-lawson",
     type: "PERSON",
     name: "Dominion Okikiolu Mobolaji Lawson",
+    imageUrl: "/uploads/dominion-okikiolu-lawson/portrait.jpg",
     aliases: "Dom Lawson, Lawson Dominion, DOMINION OKIKIOLU MOBOLAJI LAWSON",
     country: "Nigeria",
     location: "Nigeria (Lagos / FCT Abuja associations on file)",
     summary:
-      "Named in editorial complainant files as a consultant and contact / introduction intermediary in the East Africa gold-trade dossier. Treat introductions, escrow pitches and counterpart referrals as high-risk until independent mandate, escrow and identity checks are verified. No identity document is published on this profile.",
+      "Named in editorial complainant files as a consultant and contact / introduction intermediary in the East Africa gold-trade dossier. Treat introductions, escrow pitches and counterpart referrals as high-risk until independent mandate, escrow and identity checks are verified.",
     sourceLabel: "Editorial complainant file — consultant / contact role in gold dossier",
     listedAt: "2026-07-21",
     amountOwed: GOLD_STORY_CLAIM_USD,
