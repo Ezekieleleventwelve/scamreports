@@ -76,9 +76,20 @@ export default function WarnlistSearch({ labels }: WarnlistSearchProps) {
         ) : null}
         <button
           type="submit"
-          className="shrink-0 h-8 px-3 rounded-lg bg-foreground text-background text-[12px] font-medium hover:opacity-90 transition-opacity"
+          className="shrink-0 h-8 w-8 inline-flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors"
+          aria-label={labels.searchAction ?? "Search"}
         >
-          {labels.searchAction ?? "Search"}
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path strokeLinecap="round" d="m21 21-4.35-4.35" />
+          </svg>
         </button>
       </div>
     </form>

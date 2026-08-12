@@ -22,6 +22,11 @@ const AUTHORITY_LINKS = [
     href: "https://www.europol.europa.eu/",
     label: "Europol",
   },
+  {
+    href: "https://ofac.treasury.gov/sanctions-programs-and-country-information",
+    label: "OFAC",
+    title: "OFAC Sanctions Programs and Country Information",
+  },
 ] as const;
 
 export default async function Header() {
