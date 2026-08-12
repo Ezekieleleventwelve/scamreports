@@ -48,10 +48,6 @@ export default async function Header() {
             />
           </Link>
 
-          <span className="hidden sm:inline text-[12px] text-muted-foreground truncate">
-            {t(dict, "warnlist.title")}
-          </span>
-
           <nav
             aria-label="Law enforcement"
             className="hidden md:flex items-center gap-0.5 min-w-0"
