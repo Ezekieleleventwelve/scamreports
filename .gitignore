@@ -39,10 +39,6 @@ yarn-error.log*
 prisma/dev.db
 prisma/dev.db-journal
 
-# uploads
-public/uploads/*
-!public/uploads/.gitkeep
-
 # vercel
 .vercel
 
@@ -54,3 +50,6 @@ next-env.d.ts
 
 # OSINT register scan drafts (manual review before warnlist)
 /osint-drafts
+
+# Full passport/ID page scans (heads only on profiles)
+public/uploads/edward-goodness/
